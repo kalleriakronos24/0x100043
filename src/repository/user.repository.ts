@@ -1,10 +1,19 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const test = {};
+const retrieveUserPoints = async (id: string) => {
+  const check = await prisma.user.findFirst({
+    where: {
+      id: id,
+    },
+  });
 
+  if (check?.id) {
+    return check.points;
+  }
 
-export {
-    test
+  return 0;
 };
+
+export { retrieveUserPoints };

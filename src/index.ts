@@ -82,7 +82,7 @@ class App extends Routes {
         
         
         app.use((req, res, next) => {
-            res.setHeader('Access-Control-Allow-Origin', '127.0.0.1');
+            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
             res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
             res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -103,8 +103,6 @@ class App extends Routes {
         // in case of an error
         app.on('error', (parent: Application) => {
             console.error('app error', parent.stack);
-            // console.error('on url', parent.);
-            // console.error('with headers', parent.req.headers);
         });
     }
 
@@ -120,7 +118,6 @@ class App extends Routes {
     /**
      * Setup server either with clustering or without it
      * @param isClusterRequired Boolean
-     * @constructor
      */
     setupServer(isClusterRequired: boolean) {
         // if it is a master process then call setting up worker process
@@ -134,4 +131,4 @@ class App extends Routes {
 }
 
 // run the server
-new App().setupServer(process.env.NODE_ENV === "test" ? false : true);
+new App().setupServer(process.env.NODE_ENV === "STAGING" ? false : true);

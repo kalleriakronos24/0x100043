@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "372c31e3-a825-42a8-b5b2-893d6e7e07d7",
+		"name": "0x100043",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25124253",
+		"_collection_link": "https://speeding-trinity-523626.postman.co/workspace/My-Workspace~4d8b0fa4-9560-41c8-893a-32044c319d93/collection/25124253-372c31e3-a825-42a8-b5b2-893d6e7e07d7?action=share&source=collection_link&creator=25124253"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"samplexxx\",\r\n    \"password\" : \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/sign-up",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						},
+						"description": "SAMPLE USER ALREADY EXISTING\n\n``` json\n{\n    \"status\": \"error\",\n    \"message\": \"Username has been used, please use another username\"\n}\n\n ```\n\n  \nSAMPLE SUCCESS RESPONSE  \n  \n\n``` json\n{\n    \"status\": \"success\",\n    \"message\": \"User Created!\",\n    \"response\": {\n        \"id\": \"f9457141-d267-430b-9763-b99d4f2a47f2\",\n        \"username\": \"samplexxx\",\n        \"password\": \"$2b$10$SWjhYGqaL9oGXXJVDT07g.bP/S6eUJJPXugtVmvaAFHLkZfhDN0z2\",\n        \"points\": 100,\n        \"createdAt\": \"2024-02-09T15:18:22.619Z\",\n        \"updatedAt\": \"2024-02-09T15:18:22.619Z\"\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"sampleuserx1\",\r\n    \"password\" : \"sampleuser1passwordx\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/sign-in",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						},
+						"description": "SAMPLE SUCCESS RESPONSE\n\n``` json\n{\n    \"status\": \"success\",\n    \"message\": \"Login Successful\",\n    \"response\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU1ODk2NjVkLWQ2NzctNDEwNS05M2UwLTIyYTMxMmZjMDU0NyIsInVzZXJuYW1lIjoic2FtcGxldXNlcjEiLCJwYXNzd29yZCI6IiQyYiQxMCRiZXBxbHQ1SlBnL2lXOG5UL0VIL2llRTZuRHZFdXVtVHFNc09XdExDUVJ4eXFxMnF3WWFETyIsInBvaW50cyI6MjMuMDUsImNyZWF0ZWRBdCI6IjIwMjQtMDItMDhUMTg6MDM6MjAuNTk3WiIsInVwZGF0ZWRBdCI6IjIwMjQtMDItMDlUMTU6MTM6NTEuNjUxWiIsImlhdCI6MTcwNzQ5MTc3OSwiZXhwIjoxNzM4NTk1Nzc5fQ.s0V-z2u_OgDLEkD6wiKgWfK156M6PjQcUb6lIEB67KA\"\n    }\n}\n\n ```\n\nSAMPLE INCORRECT PASSWORD\n\n``` json\n{\n    \"status\": \"error\",\n    \"message\": \"password is incorrect, please try again\"\n}\n\n ```\n\nSAMPLE USER NOT FOUND\n\n``` json\n{\n    \"status\": \"error\",\n    \"message\": \"User not found\"\n}\n\n ```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "books",
+			"item": [
+				{
+					"name": "get books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/book/list?step=40&search=Torres",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"book",
+								"list"
+							],
+							"query": [
+								{
+									"key": "step",
+									"value": "40"
+								},
+								{
+									"key": "search",
+									"value": "Torres",
+									"description": "search for title or writer name"
+								}
+							]
+						},
+						"description": "SAMPLE SUCCESS RESPONSE\n\n``` json\n{\n    \"status\": \"success\",\n    \"message\": \"Retrieve success\",\n    \"response\": {\n        \"data\": [\n            {\n                \"id\": \"8ae4d63d-1047-4198-81a7-8d049ac6c378\",\n                \"title\": \"Mcdowell Torres\",\n                \"writer\": \"Crystal Garcia\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/814ovO1B8xL._AC_UL320_SR320,320_.jpg\",\n                \"price\": 47.47,\n                \"tags\": [\n                    \"fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.907Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.296Z\"\n            },\n            {\n                \"id\": \"09f6095a-ffb3-48f7-a83f-84b06af775ca\",\n                \"title\": \"Erin Mullen\",\n                \"writer\": \"Tara Callahan\",\n                \"coverImage\": \"https://m.media-amazon.com/images/I/61IbbP-U73L._SY522_.jpg\",\n                \"price\": 55.6,\n                \"tags\": [\n                    \"fiction\",\n                    \"essay\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.906Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.295Z\"\n            },\n            {\n                \"id\": \"c4cc9aba-f20b-421c-87d8-76fefe972600\",\n                \"title\": \"Mcconnell Irwin\",\n                \"writer\": \"Castro Dale\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/91EZWrPaE2L._AC_UL320_SR320,320_.jpg\",\n                \"price\": 46.32,\n                \"tags\": [\n                    \"non-fiction\",\n                    \"fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.905Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.292Z\"\n            },\n            {\n                \"id\": \"35bddbb9-cafc-41bf-8d8d-08a6098fd63f\",\n                \"title\": \"Nina Hernandez\",\n                \"writer\": \"Bobbi Graves\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/91sy6YF7i4L._AC_UL320_SR320,320_.jpg\",\n                \"price\": 68.44,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.903Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.290Z\"\n            },\n            {\n                \"id\": \"2a15fdbd-e4d8-46f5-ad16-880a644acb5c\",\n                \"title\": \"Woods Knight\",\n                \"writer\": \"Rhonda Washington\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/91sy6YF7i4L._AC_UL320_SR320,320_.jpg\",\n                \"price\": 69.62,\n                \"tags\": [\n                    \"fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.901Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.289Z\"\n            },\n            {\n                \"id\": \"828af3ec-7b78-4359-ba42-20d123e5b231\",\n                \"title\": \"Golden Nichols\",\n                \"writer\": \"Laverne Duke\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/91EZWrPaE2L._AC_UL320_SR320,320_.jpg\",\n                \"price\": 34.2,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.900Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.288Z\"\n            },\n            {\n                \"id\": \"661bbe8b-0ae2-4bc6-a8f8-c5810680a061\",\n                \"title\": \"Connie Duran\",\n                \"writer\": \"Marcy Fulton\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/91sy6YF7i4L._AC_UL320_SR320,320_.jpg\",\n                \"price\": 29.48,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.898Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.286Z\"\n            },\n            {\n                \"id\": \"ecc5736d-27dc-42b2-899b-6bf0d274c142\",\n                \"title\": \"Schultz Lester\",\n                \"writer\": \"Blanchard Cooke\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/91EZWrPaE2L._AC_UL320_SR320,320_.jpg\",\n                \"price\": 30.44,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.896Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.285Z\"\n            },\n            {\n                \"id\": \"7b996f25-fa5f-4937-85f9-605ff45308a7\",\n                \"title\": \"Wilkinson Manning\",\n                \"writer\": \"Cecelia Santana\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/51Ga5GuElyL._AC_SX184_.jpg\",\n                \"price\": 55.61,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.895Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.283Z\"\n            },\n            {\n                \"id\": \"4011c43a-7251-4e2e-92dd-67de1ccd769c\",\n                \"title\": \"Brandi Warner\",\n                \"writer\": \"Kristine Mcmahon\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/91sy6YF7i4L._AC_UL320_SR320,320_.jpg\",\n                \"price\": 36.11,\n                \"tags\": [\n                    \"non-fiction\",\n                    \"fiction\",\n                    \"essay\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.893Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.282Z\"\n            },\n            {\n                \"id\": \"ad5f6c1f-c864-45b5-8aab-a74e3c4193b2\",\n                \"title\": \"Andrews Fry\",\n                \"writer\": \"Pearson Franco\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/91sy6YF7i4L._AC_UL320_SR320,320_.jpg\",\n                \"price\": 44.19,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.892Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.280Z\"\n            },\n            {\n                \"id\": \"4a0e6795-7000-4e09-9993-b6d08fb06c25\",\n                \"title\": \"Fitzpatrick Hurley\",\n                \"writer\": \"Lewis Shelton\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/51Ga5GuElyL._AC_SX184_.jpg\",\n                \"price\": 39.69,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.890Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.279Z\"\n            },\n            {\n                \"id\": \"2e691025-375b-4655-952b-0785320cbbba\",\n                \"title\": \"Lillian Pace\",\n                \"writer\": \"Newman Sims\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/91sy6YF7i4L._AC_UL320_SR320,320_.jpg\",\n                \"price\": 17.17,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.889Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.278Z\"\n            },\n            {\n                \"id\": \"9128ba88-84e9-4472-aede-6ed7a7445705\",\n                \"title\": \"Jimenez Franklin\",\n                \"writer\": \"Tami Newton\",\n                \"coverImage\": \"https://m.media-amazon.com/images/I/41yxJ8C2uGL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg\",\n                \"price\": 73.59,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.887Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.276Z\"\n            },\n            {\n                \"id\": \"2b4d44b9-cdb2-4bcf-8077-d53386fd625a\",\n                \"title\": \"Bond Chambers\",\n                \"writer\": \"Nichole Fleming\",\n                \"coverImage\": \"https://m.media-amazon.com/images/I/61IbbP-U73L._SY522_.jpg\",\n                \"price\": 12.92,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.886Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.275Z\"\n            },\n            {\n                \"id\": \"f554c3d6-d485-4f5c-b4b0-dbf036e4da53\",\n                \"title\": \"Mercado Atkins\",\n                \"writer\": \"Saundra Burks\",\n                \"coverImage\": \"https://images-na.ssl-images-amazon.com/images/I/91sy6YF7i4L._AC_UL320_SR320,320_.jpg\",\n                \"price\": 12.51,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.884Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.273Z\"\n            },\n            {\n                \"id\": \"17403290-b8d2-4fa7-a534-a5c558fdf5c5\",\n                \"title\": \"Hester Maynard\",\n                \"writer\": \"Jackie Palmer\",\n                \"coverImage\": \"https://m.media-amazon.com/images/I/61IbbP-U73L._SY522_.jpg\",\n                \"price\": 45.7,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.883Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.272Z\"\n            },\n            {\n                \"id\": \"37cac33a-cb7a-43ec-b85b-aa9e342e30a3\",\n                \"title\": \"Dionne Vance\",\n                \"writer\": \"Cobb Camacho\",\n                \"coverImage\": \"https://m.media-amazon.com/images/I/41yxJ8C2uGL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg\",\n                \"price\": 36.75,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.881Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.271Z\"\n            },\n            {\n                \"id\": \"e4b14859-78d7-4be8-905c-3c5528b60812\",\n                \"title\": \"Amie Morales\",\n                \"writer\": \"Wright Barr\",\n                \"coverImage\": \"https://m.media-amazon.com/images/I/51smXa05psL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg\",\n                \"price\": 41.43,\n                \"tags\": [\n                    \"fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.879Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.269Z\"\n            },\n            {\n                \"id\": \"6e502dc0-a8fe-408b-9520-c49e00f4532d\",\n                \"title\": \"Richardson Ellis\",\n                \"writer\": \"Alyssa Huffman\",\n                \"coverImage\": \"https://m.media-amazon.com/images/I/51smXa05psL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg\",\n                \"price\": 40.93,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.878Z\",\n                \"updatedAt\": \"2024-02-08T18:06:52.268Z\"\n            }\n        ],\n        \"meta\": {\n            \"total\": 155,\n            \"lastPage\": 8,\n            \"currentPage\": 1,\n            \"perPage\": 20,\n            \"prev\": null,\n            \"next\": 2\n        }\n    }\n}\n\n ```\n\nSAMPLE IF USER DIDN'T SUPPLY STEP PARAMS\n\n``` json\n{\n    \"message\": \"Unknown Params\"\n}\n\n ```\n\n  \nSAMPLE IF USER SUPPLY SEARCH PARAMETER  \n  \n\n``` json\n{\n    \"status\": \"success\",\n    \"message\": \"Retrieve success\",\n    \"response\": {\n        \"data\": [\n            {\n                \"id\": \"8ae4d63d-1047-4198-81a7-8d049ac6c378\",\n                \"title\": \"Mcdowell Torres\",\n                \"writer\": \"Crystal Garcia\",\n                \"coverImage\": \"https://m.media-amazon.com/images/I/91uFyvEVSeL._SY522_.jpg\",\n                \"price\": 47.47,\n                \"tags\": [\n                    \"non-fiction\"\n                ],\n                \"createdAt\": \"2024-02-08T18:03:20.907Z\",\n                \"updatedAt\": \"2024-02-09T15:13:51.946Z\"\n            }\n        ],\n        \"meta\": {\n            \"total\": 1,\n            \"lastPage\": 1,\n            \"currentPage\": 1,\n            \"perPage\": 40,\n            \"prev\": null,\n            \"next\": null\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "order checkout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{0x100043_dev_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/order/checkout",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

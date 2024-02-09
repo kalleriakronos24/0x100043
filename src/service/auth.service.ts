@@ -85,7 +85,7 @@ class AuthService {
       },
     });
 
-    return !check;
+    return !!check;
   }
 
   /**
@@ -97,18 +97,22 @@ class AuthService {
    * @returns Boolean
    */
   async comparePassword(password: string, username: string) {
-    const userData = await this.prisma.user.findFirst({
-      where: {
-        username: username,
-      },
-    });
-    let isPasswordMatch;
+    try {
+      const userData = await this.prisma.user.findFirst({
+        where: {
+          username: username,
+        },
+      });
+      let isPasswordMatch = false;
 
-    if (userData) {
-      isPasswordMatch = bcrypt.compareSync(password, userData.password);
+      if (userData) {
+        isPasswordMatch = bcrypt.compareSync(password, userData.password);
+      }
+
+      return isPasswordMatch;
+    } catch (error) {
+      throw new Error(JSON.stringify(error));
     }
-
-    return isPasswordMatch;
   }
 
   /**
@@ -120,7 +124,6 @@ class AuthService {
    */
   async login(res: Response, user: User) {
     const { password, username } = user;
-
     try {
       const validateUser = await this.validateUser(user);
 
@@ -139,7 +142,7 @@ class AuthService {
           },
         });
 
-        if (userData) {
+        if (userData?.id) {
           const token = await this.generateToken({ ...userData });
 
           this.customResponse.setSuccess(201, 'Login Successful', { token });

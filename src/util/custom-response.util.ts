@@ -29,7 +29,7 @@ class CustomResponse {
         const result = {
             status: this.type,
             message: this.message,
-            data: this.data,
+            response: this.data,
         };
 
         if (this.statusCode) {

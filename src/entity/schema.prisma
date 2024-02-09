@@ -14,7 +14,48 @@ model User {
   id       String @id @default(uuid()) @db.Uuid
   username String @unique
   password String
-  points   Int @default(100)
+  points   Float  @default(100.0)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @db.Timestamptz(6)
+}
+
+model Book {
+  id         String   @id @default(uuid()) @db.Uuid
+  title      String   @unique
+  writer     String
+  coverImage String
+  price      Float
+  tags       String[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @db.Timestamptz(6)
+}
+
+enum OrderStatus {
+  WAITING_CONFIRMATION
+  CANCELED
+  SUCCESS
+}
+
+model Order {
+  id              String      @id @default(uuid()) @db.Uuid
+  referenceNumber String
+  bookId          String      @db.Uuid
+  orderAt         DateTime    @default(now()) @db.Timestamptz(6)
+  orderBy         String      @db.Uuid
+  status          OrderStatus
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @db.Timestamptz(6)
+}
+
+model OrderSummary {
+  id              String   @id @default(uuid()) @db.Uuid
+  referenceNumber String
+  totalPrice      Float
+  orderBy         String   @db.Uuid
+  checkoutAt      DateTime @default(now()) @db.Timestamptz(6)
 
   createdAt DateTime @default(now()) @db.Timestamptz(6)
   updatedAt DateTime @updatedAt @db.Timestamptz(6)

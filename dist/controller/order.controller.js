@@ -8,19 +8,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.retrieveUserPoints = void 0;
-const client_1 = require("@prisma/client");
-const prisma = new client_1.PrismaClient();
-const retrieveUserPoints = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const check = yield prisma.user.findFirst({
-        where: {
-            id: id,
-        },
-    });
-    if (check === null || check === void 0 ? void 0 : check.id) {
-        return check.points;
+const service_1 = __importDefault(require("../service"));
+class OrderController extends service_1.default {
+    constructor() {
+        super();
     }
-    return 0;
-});
-exports.retrieveUserPoints = retrieveUserPoints;
+    checkoutOrder(req, res) {
+        const _super = Object.create(null, {
+            orderService: { get: () => super.orderService }
+        });
+        return __awaiter(this, void 0, void 0, function* () {
+            const order = _super.orderService.call(this);
+            const body = req.body;
+            return yield order.checkoutOrder(req, res, body.data);
+        });
+    }
+}
+exports.default = OrderController;
