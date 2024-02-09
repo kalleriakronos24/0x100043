@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
+    "build": "npx prisma migrate dev && npx prisma db push && ts-node src/entity/seeders/index.ts && node dist/index.js",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "migrate": "npx prisma migrate dev && npx prisma db push",
